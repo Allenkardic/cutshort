@@ -1,0 +1,16 @@
+export default {
+  tintColor: '#031a61',
+  white: '#FFFFFF',
+  primary: '#010a43',
+  secondary: '#192259',
+  tertiary: '#10194e',
+  red: '#ff2e63',
+  warning: '#fd4a54',
+  black: '#36454f',
+  blue: '#4c5ba9',
+  yellow: '#fbad39',
+  lightBlue: '#303873',
+  lightGreen: '#1cc7ac',
+  green: '#6dbf8f',
+  grey: '#eeeeee',
+};
