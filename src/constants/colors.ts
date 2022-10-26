@@ -16,5 +16,7 @@ export default {
   purple: '#7d86bd',
   lightGreen: '#1cc7ac',
   green: '#6dbf8f',
+  greenVariantOne: '#1ec76c',
+  greenVariantTwo: '#1ab768',
   grey: '#eeeeee',
 };

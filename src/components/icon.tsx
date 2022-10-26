@@ -36,7 +36,7 @@ export function TabBarIcon(props: IProps) {
     <Ionicon
       name={name}
       size={size || HP('2%')}
-      color={focused ? theme.colors.primary : colors.tabIconDefault}
+      color={focused ? theme.colors.primary : colors.black}
     />
   );
 }
