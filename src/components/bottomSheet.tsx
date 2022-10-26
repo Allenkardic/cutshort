@@ -1,85 +1,55 @@
-import React, {Fragment, ReactNode} from 'react';
-
+import React, {ReactNode} from 'react';
 import {useTheme} from '@react-navigation/native';
-import {StyleSheet, View, ViewStyle} from 'react-native';
-import RBSheet from 'react-native-raw-bottom-sheet';
-
-import {colors, HP, spacing} from '../constants';
-
-import {H3} from './text';
-
+import {StyleSheet, View} from 'react-native';
+import {BottomSheetModal} from '@gorhom/bottom-sheet';
+import {colors, HP, spacing, WP} from '../constants';
 export interface RBSheetProps {
-  titleText?: string;
-  refRBSheet: any;
+  bottomSheetRef: any;
   children?: ReactNode;
-  animationType?: 'none' | 'fade' | 'slide';
-  minClosingHeight?: number;
-  duration?: number;
-  closeOnSwipeDown?: boolean;
-  closeOnPressMask?: boolean;
-  height?: number;
-  onClose?: () => void;
-  customStyles?: {
-    wrapper?: ViewStyle;
-    container?: ViewStyle;
-  };
+  handleSheetChanges: any;
+  snapPoints: any;
 }
 
-export default function BottomSheet(props: RBSheetProps) {
-  const {
-    children,
-    refRBSheet,
-    closeOnPressMask,
-    closeOnSwipeDown = false,
-    titleText,
-    height,
-  } = props;
+export default function RNBottomSheet(props: RBSheetProps) {
+  const {children, bottomSheetRef, handleSheetChanges, snapPoints} = props;
 
   const theme = useTheme();
   const styles = useStyles(theme);
 
   return (
-    <RBSheet
-      ref={refRBSheet}
-      closeOnDragDown={closeOnSwipeDown}
-      closeOnPressMask={closeOnPressMask}
-      customStyles={{
-        container: {
-          height: height ? height : 'auto',
-          opacity: 1,
-          borderTopLeftRadius: HP('3%'),
-          borderTopRightRadius: HP('3%'),
-          backgroundColor: theme.colors.background,
-        },
-        draggableIcon: {
-          opacity: 1,
-          width: '10%',
-          backgroundColor: colors.tertiary,
-          zIndex: 3,
-        },
-      }}
-      dragFromTopOnly={closeOnSwipeDown}>
-      {titleText && (
-        <View style={styles.titleStyle}>
-          <H3 bold>{titleText}</H3>
-        </View>
-      )}
-
-      <View style={styles.scrollStyle}>{children}</View>
-    </RBSheet>
+    <BottomSheetModal
+      handleStyle={styles.handleStyle}
+      backgroundStyle={styles.backgroundStyle}
+      handleIndicatorStyle={styles.handleIndicatorStyle}
+      ref={bottomSheetRef}
+      index={1}
+      snapPoints={snapPoints}
+      onChange={handleSheetChanges}>
+      <View style={styles.container}>{children}</View>
+    </BottomSheetModal>
   );
 }
 
 const useStyles = (theme: any) =>
   StyleSheet.create({
-    titleStyle: {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      paddingTop: spacing.small,
-      marginBottom: spacing.xsmall,
+    container: {
+      flex: 1,
+      backgroundColor: colors.blueVariantOne,
+      paddingTop: spacing.xsmall,
     },
-    scrollStyle: {
-      paddingBottom: spacing.xlarge,
-      backgroundColor: colors.secondary,
+    handleStyle: {
+      backgroundColor: colors.blueVariantOne,
+      borderTopLeftRadius: HP('20%'),
+      borderTopRightRadius: HP('20%'),
+    },
+    backgroundStyle: {
+      backgroundColor: colors.blueVariantOne,
+      borderTopLeftRadius: HP('20%'),
+      borderTopRightRadius: HP('20%'),
+    },
+    handleIndicatorStyle: {
+      width: WP('15%'),
+      backgroundColor: colors.purple,
+      height: 6,
     },
   });

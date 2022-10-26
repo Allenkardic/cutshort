@@ -53,10 +53,10 @@ export default function Button(props: IProps) {
             color={alternate ? theme.colors.primary : colors.white}
           />
         ) : (
-          <H5 semiBold color={alternate ? colors.lightBlue : colors.white}>
+          <H4 semiBold color={alternate ? colors.lightBlue : colors.white}>
             {' '}
             {text}{' '}
-          </H5>
+          </H4>
         )}
       </TouchableOpacity>
     </View>
@@ -82,7 +82,7 @@ const useStyles = (props: {
         : colors.red,
       opacity: props.isSubmitting || props.hasError ? 0.7 : 1,
       alignItems: 'center',
-      width: props.short ? '50%' : '100%',
+      width: props.short ? '45%' : '100%',
       borderRadius: borderRadius.medium,
       justifyContent: 'center',
       textAlign: 'center',
@@ -90,7 +90,5 @@ const useStyles = (props: {
       borderColor: props.alternate ? colors.lightBlue : 'transparent',
       borderWidth: 1,
       borderStyle: 'solid',
-      marginRight: 'auto',
-      marginLeft: 'auto',
     },
   });
